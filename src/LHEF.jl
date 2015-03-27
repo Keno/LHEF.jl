@@ -37,7 +37,7 @@ immutable Event
     data::Vector{Particle}
 end
  
-function parse(filename; format = nothing)
+function parse_lhe(filename; format = nothing)
     if format === nothing
         # Format not declared, inferring from extension
         fparts = split(basename(filename),".")
