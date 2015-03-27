@@ -3,6 +3,7 @@ module LHEF
 import Base.dot
 
 using LightXML
+using Compat
 
 immutable EventHeader
     nup::Uint8          # Number of particles
@@ -59,8 +60,8 @@ function parse_lhe(filename; format = nothing)
 
     [begin
         data = content(event)
-        lines = split(data,'\n',keep=false)
-        headerdata = split(lines[1],' ',keep=false)
+        lines = @compat split(data,'\n',keep=false)
+        headerdata = @compat split(lines[1],' ',keep=false)
         header = EventHeader(parseint(headerdata[1]), parseint(headerdata[2]),
             parsefloat(Float64, headerdata[3]), parsefloat(Float64, headerdata[4]),
             parsefloat(Float64, headerdata[5]), parsefloat(Float64, headerdata[6]))
