@@ -25,7 +25,7 @@ immutable Particle
     particle::Int8
     status::Int8
     mothup::NTuple{2,Uint8}
-    color::NTuple{2,Uint8}
+    color::NTuple{2,Uint16}
     pμ::FourVector
     m::Float64
     vtimup::Float64
@@ -68,7 +68,7 @@ function parse(filename; format = nothing)
             fields = split(line,' ',keep=false)
             p = Particle(parseint(Int8,fields[1]),parseint(Int8,fields[2]),
                 (parseint(Uint8,fields[3]),parseint(Uint8,fields[4])),
-                (parseint(Uint8,fields[5]),parseint(Uint8,fields[6])),
+                (parseint(Uint16,fields[5]),parseint(Uint16,fields[6])),
                 FourVector((parsefloat(Float64,fields[10]),parsefloat(Float64,fields[7]),
                     parsefloat(Float64,fields[8]),parsefloat(Float64,fields[9]))),
                 parsefloat(Float64, fields[11]), parsefloat(Float64, fields[12]),
