@@ -66,7 +66,7 @@ function parse_lhe(filename; format = nothing)
             parsefloat(Float64, headerdata[3]), parsefloat(Float64, headerdata[4]),
             parsefloat(Float64, headerdata[5]), parsefloat(Float64, headerdata[6]))
         data = [begin
-            fields = split(line,' ',keep=false)
+            fields = @compat split(line,' ',keep=false)
             p = Particle(parseint(Int8,fields[1]),parseint(Int8,fields[2]),
                 (parseint(Uint8,fields[3]),parseint(Uint8,fields[4])),
                 (parseint(Uint16,fields[5]),parseint(Uint16,fields[6])),
